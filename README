@@ -1,9 +1,14 @@
 Setup the deps using conda:
 ```
-conda env create -n <NAME> --file conda-env.txt
+conda env create -n bbbvi --file conda-env.txt
 ```
 
-Then install pip deps:
+Start working within the environment
+```
+source activate bbbvi
+```
+
+Install pip deps:
 ```
 pip install -r requirements.txt
 ```
