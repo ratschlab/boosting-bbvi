@@ -68,3 +68,7 @@ python mixture_model_relbo.py \
     --outdir $OUTDIR"
 ```
 Where `$variant` is `fixed`, `line_search`, or `fc`.
+
+# License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
