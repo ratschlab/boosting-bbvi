@@ -140,29 +140,10 @@ def fully_corrective(q, p):
   # randomly initialize, rather than take q.cat as the initialization
   weights = np.random.random(n_comps).astype(np.float32)
   weights /= np.sum(weights)
-  #weights = q.cat.probs.eval()
 
   n_samples = 1000
   samples = [comp.sample(n_samples).eval() for comp in comps] # comp.sample resamples each time, so eval once to keep samples fixed.
 
-#  S = [] # memoized values [components x sample from component]
-#  S = np.zeros([n_samples, n_comps, n_comps])
-#  for i in range(n_comps):
-#    for j in range(n_comps):
-#      comp_log_prob = comps[i].log_prob(samples[j])
-#
-#      # since mvn is normal and assumes each feature is independent, the log
-#      # prob is the sum across features
-#      # TODO, there must be a more elegant way. Maybe put the log_sum in the mvn class itself?
-#      comp_log_prob = tf.reduce_sum(comp_log_prob, axis=1).eval()
-#
-#      S[:,i,j] = comp_log_prob
-#
-      #S.append(comp_log_prob)
-  #S = tf.transpose(tf.reshape(tf.stack(S), [n_comps, n_comps, n_samples]))
-  #S = S.eval()
-
-  # TODO delete squeeze?
   p_log_probs = [tf.squeeze(p.log_prob(i)).eval() for i in samples]
 
   do_frank_wolfe = False
@@ -518,7 +499,7 @@ def main(_):
         X = tf.placeholder(tf.float32, [N, D])
         y = Bernoulli(logits=ed.dot(X, w))
 
-        X_test = tf.placeholder(tf.float32, [N_test, D_test]) # TODO why are these test variables necessary?
+        X_test = tf.placeholder(tf.float32, [N_test, D_test])
         y_test = Bernoulli(logits=ed.dot(X_test, w))
 
         qw = construct_base_dist([D], iter, 'qw')
@@ -530,8 +511,6 @@ def main(_):
         inference_time_end = time.time()
         total_time += float(inference_time_end - inference_time_start)
 
-        #loglik_op = tf.reduce_sum(y.log_prob(ytrain))   # sum across the training data
-        #joint = Joint_slow(X, Xtrain, w, loglik_op, sess)     # TODO rebuilding the op and this class on each iteration
         joint = Joint(Xtrain, ytrain, sess)
         if iter > 0:
           qtw_prev = build_mixture(weights, q_components)
@@ -566,13 +545,6 @@ def main(_):
           weights = line_search(build_mixture(weights[:-1], q_components[:-1]), qw, joint)
 
         qtw_new = build_mixture(weights, q_components)
-        # TODO this was for 1d examples
-        #if (iter+1) % 20 == 0:
-        #  fig, ax = plt.subplots()
-        #  ax.scatter([0] * 50, np.squeeze(empirical_samples), label='hmc')
-        #  ax.scatter([1] * 50, np.squeeze(qtw_new.sample(50).eval()), label='iter %d' % iter)
-        #  plt.legend()
-        #  plt.show()
 
         if False:
           for i,comp in enumerate(qtw_new.components):

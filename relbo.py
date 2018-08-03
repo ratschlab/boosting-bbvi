@@ -150,7 +150,6 @@ class KLqp(VariationalInference):
     Normal.
     """
 
-    # TODO which one is better??
     if FLAGS.use_rb:
       print("USING RAO-BLACKWELL")
       return build_score_rb_loss_and_gradients_relbo(self, var_list)
@@ -741,25 +740,10 @@ def build_reparam_loss_and_gradients(inference, var_list):
                'sqrtinc': lambda t: np.sqrt(t + 1)
                }
 
-  #if inference.fw_iter == 0:
-  #  # the 0-th iteration is vanilla VI
-  #  relbo_reg = 1.
-  #else:
-  #  relbo_reg = FLAGS.relbo_reg * annealers[FLAGS.relbo_anneal](inference.fw_iter)
-
   relbo_reg = FLAGS.relbo_reg * annealers[FLAGS.relbo_anneal](inference.fw_iter)
-
-  # TODO is this right?
-  #if inference.fw_iterates == {}:
-  #  relbo_reg = 1.
-  #else:
-  #  relbo_reg = FLAGS.relbo_reg * annealers[FLAGS.relbo_anneal](len(qt.components))
-
-  #relbo_reg = 1e-6
 
   logger.info("relbo regularization lambda %.10f" % relbo_reg)
 
-  #loss = -(p_log_prob - relbo_reg * q_log_prob - reg_penalty - 0.001 * relbo_reg_log_prob)
   loss = -(p_log_prob - relbo_reg * q_log_prob - reg_penalty - relbo_reg_log_prob)
 
   grads = tf.gradients(loss, var_list)
