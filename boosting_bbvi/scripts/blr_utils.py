@@ -17,7 +17,7 @@ from sklearn.metrics import roc_auc_score
 from edward.models import Bernoulli, Normal, Empirical, MultivariateNormalDiag
 from edward.models import Mixture, Categorical
 
-import boosting_bbvi.core.relbo
+import boosting_bbvi.core.relbo as relbo
 from boosting_bbvi.core.mvn import mvn
 import boosting_bbvi.core.utils as utils
 

@@ -23,7 +23,7 @@ from edward.models import Mixture, Categorical
 from edward.models import RandomVariable
 import edward.util
 
-import boosting_bbvi.core.relbo
+import boosting_bbvi.core.relbo as relbo
 from boosting_bbvi.core.mvn import mvn
 from boosting_bbvi.core.lpl import lpl
 import boosting_bbvi.core.utils as utils
