@@ -92,9 +92,10 @@ def load_chem_data(path):
   return X, y
 
 def get_chem_data():
-  traindatapath = os.path.expanduser('ds1.100_train.npz')
+  basepath = "~/data/bbbvi/" # TODO refactor
+  traindatapath = os.path.expanduser(os.path.join(basepath, 'ds1.100_train.npz'))
   Xtrain, ytrain = load_chem_data(traindatapath)
-  testdatapath = os.path.expanduser('ds1.100_test.npz')
+  testdatapath = os.path.expanduser(os.path.join(basepath, 'ds1.100_test.npz'))
   Xtest, ytest = load_chem_data(testdatapath)
   return ((Xtrain, ytrain), (Xtest, ytest))
 
