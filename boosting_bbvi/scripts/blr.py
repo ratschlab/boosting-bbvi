@@ -4,32 +4,29 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import os
+import sys
+import time
+import pickle
 import edward as ed
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-
-import os
-import sys
-import time
-import pickle
+from scipy.special import expit as sigmoid
+from scipy.misc import logsumexp
+from sklearn.metrics import roc_auc_score
 
 from edward.models import Bernoulli, Normal, Empirical, MultivariateNormalDiag
 from edward.models import Mixture, Categorical
 from edward.models import RandomVariable
 import edward.util
-import relbo
 
-from scipy.special import expit as sigmoid
-from scipy.misc import logsumexp
-from sklearn.metrics import roc_auc_score
-from mvn import mvn
-from lpl import lpl
-
-
-import utils
+import boosting_bbvi.core.relbo
+from boosting_bbvi.core.mvn import mvn
+from boosting_bbvi.core.lpl import lpl
+import boosting_bbvi.core.utils as utils
 import blr_utils
 import six
 

@@ -8,6 +8,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import os
 import matplotlib
 matplotlib.use('Agg')
 
@@ -15,15 +16,13 @@ import edward as ed
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-import os
-
 import scipy.io as sio
 
 from edward.models import Normal, MultivariateNormalDiag, Mixture, Categorical, ParamMixture
-from utils import block_diagonal
-import relbo
 
-from mvn import mvn
+from boosting_bbvi.core.utils import block_diagonal
+import boosting_bbvi.core.relbo as relbo
+from boosting_bbvi.core.mvn import mvn
 
 flags = tf.app.flags
 FLAGS = tf.flags.FLAGS

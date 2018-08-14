@@ -8,12 +8,13 @@ plt.style.use('ggplot')
 import os
 import sys
 import numpy as np
-from infinite_mixture import InfiniteMixtureScipy
 import scipy.stats as stats
 import plot_utils as utils
 
 from absl import app
 from absl import flags
+
+from boosting_bbvi.core.infinite_mixture import InfiniteMixtureScipy
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string('outdir', '/tmp/', '')

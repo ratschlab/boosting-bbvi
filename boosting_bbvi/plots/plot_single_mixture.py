@@ -5,7 +5,6 @@ from __future__ import print_function
 import os
 import sys
 import numpy as np
-from infinite_mixture import InfiniteMixtureScipy
 import scipy.stats as stats
 import plot_utils as utils
 
@@ -21,6 +20,8 @@ plt.rcParams['lines.color']= 'blue'
 
 import tensorflow as tf
 from edward.models import Categorical, MultivariateNormalDiag, Normal, Mixture
+
+from boosting_bbvi.core.infinite_mixture import InfiniteMixtureScipy
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string('outdir', '/tmp/', '')

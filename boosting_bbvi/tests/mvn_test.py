@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
-import mvn
 from edward.models import MultivariateNormalDiag
 import tensorflow as tf
 import numpy as np
+
+import boosting_bbvi.core.mvn as mvn
 
 def test_mvn_same_as_edward_mvn():
     loc = np.zeros(5)

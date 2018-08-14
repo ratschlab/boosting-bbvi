@@ -6,7 +6,7 @@ import tensorflow as tf
 import scipy.stats
 import random
 
-import mixture_model_relbo
+import boosting_bbvi.scripts.mixture_model_relbo as mixture_model_relbo
 
 def main():
     # build model

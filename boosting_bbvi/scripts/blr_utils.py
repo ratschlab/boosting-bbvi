@@ -4,24 +4,22 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import os
+import sys
 import edward as ed
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-
-import os
-import sys
-
-from edward.models import Bernoulli, Normal, Empirical, MultivariateNormalDiag
-from edward.models import Mixture, Categorical
-import relbo
-
 from scipy.special import expit as sigmoid
 from scipy.misc import logsumexp
 from sklearn.metrics import roc_auc_score
-from mvn import mvn
 
-import utils
+from edward.models import Bernoulli, Normal, Empirical, MultivariateNormalDiag
+from edward.models import Mixture, Categorical
+
+import boosting_bbvi.core.relbo
+from boosting_bbvi.core.mvn import mvn
+import boosting_bbvi.core.utils as utils
 
 FLAGS = tf.flags.FLAGS
 tf.flags.DEFINE_string('exp', 'chem', '')
