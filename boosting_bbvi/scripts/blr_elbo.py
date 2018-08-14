@@ -23,10 +23,9 @@ from edward.models import Mixture, Categorical
 from scipy.special import expit as sigmoid
 from scipy.misc import logsumexp
 from sklearn.metrics import roc_auc_score
-from mvn import mvn
-# TODO add option to switch between mvn & lpl
 
-import utils
+from boosting_bbvi.core.mvn import mvn # TODO add option to switch between mvn & lpl
+import boosting_bbvi.core.utils
 import blr_utils
 
 FLAGS = tf.flags.FLAGS

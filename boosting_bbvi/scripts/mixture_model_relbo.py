@@ -1,11 +1,12 @@
-#!/usr/bin/python 
+#!/usr/bin/python
 
-import utils
+import boosting_bbvi.core.utils as utils
 logger = utils.get_logger()
 
 import os
 import sys
 import numpy as np
+import time
 
 import matplotlib
 matplotlib.use('Agg')
@@ -23,10 +24,9 @@ import copy
 import scipy.stats as stats
 from scipy.misc import logsumexp as logsumexp
 
-import relbo
-from infinite_mixture import InfiniteMixtureScipy
+import boosting_bbvi.core.relbo as relbo
+from boosting_bbvi.core.infinite_mixture import InfiniteMixtureScipy
 
-import time
 
 flags = tf.app.flags
 FLAGS = flags.FLAGS

@@ -14,25 +14,19 @@ Rätsch. https://arxiv.org/abs/1806.02185.
 
 # Setup
 
-Setup the dependencies using conda:
+1. Setup the dependencies using conda:
 ```
 conda env create -n bbbvi --file conda-env.txt
 ```
 
-Start working within the environment
+2. Activate the environment
 ```
 source activate bbbvi
 ```
 
-Install pip deps:
+3. Install the package for development
 ```
-pip install -r requirements.txt
-```
-
-This should work:
-```
-$ python
->>> import edward
+python setup.py develop
 ```
 
 # Run

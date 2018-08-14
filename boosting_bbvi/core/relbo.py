@@ -12,7 +12,7 @@ from edward.inferences.variational_inference import VariationalInference
 from edward.models import RandomVariable
 from edward.util import copy, get_descendants
 
-import utils
+import boosting_bbvi.core.utils as utils
 logger = utils.logger
 
 flags = tf.app.flags

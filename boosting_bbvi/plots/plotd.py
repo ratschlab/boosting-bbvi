@@ -78,11 +78,6 @@ def main(argv):
     if len(values.shape) == 1:
         values = np.reshape(values, (values.shape[0], 1))
 
-    if FLAGS.times:
-        with open(FLAGS.times) as lines:
-            for line in lines:
-
-
     if FLAGS.confidence:
         plot_with_confidence(values, FLAGS.xlabel, FLAGS.ylabel, FLAGS.title)
     else:
