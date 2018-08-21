@@ -92,7 +92,7 @@ def load_chem_data(path):
   return X, y
 
 def get_chem_data():
-  basepath = "~/data/bbbvi/" # TODO refactor
+  basepath = "data/chem" # TODO refactor
   traindatapath = os.path.expanduser(os.path.join(basepath, 'ds1.100_train.npz'))
   Xtrain, ytrain = load_chem_data(traindatapath)
   testdatapath = os.path.expanduser(os.path.join(basepath, 'ds1.100_test.npz'))
@@ -124,13 +124,29 @@ def add_bias_column(X):
   return ret
 
 def load_wine_data():
-  basepath = os.path.expanduser("~/data/bbbvi/wine")
+  basepath = os.path.expanduser("data/wine")
   filename = os.path.join(basepath, 'train_test_split.npz')
   data = np.load(filename)
   return (data['Xtrain'], data['ytrain']), (data['Xtest'], data['ytest'])
 
-def load_eicu(task='icu_mortality'):
-  basepath = "/cluster/work/grlab/projects/bbbvi/eicu/train_test_split.npz"
+def load_eicu(task):
+  '''We need to release this data. Gideon <gideon@inf.ethz.ch>'''
+  #TODO
+  raise NotImplementedError
+
+def load_eicu_bak(task='icu_mortality'):
+  basepath = "data/eicu/train_test_split.npz"
+  data = np.load(basepath)
+
+  # N.B. we only deal with classification, no regression on length of icu stay.
+  tasks = ['icu_mortality', 'hospital_mortality', 'length_of_icu_stay']
+  col = tasks.index(task)
+
+  return (data['xtrain'], data['ytrain'][:,col]), (data['xtest'], data['ytest'][:,col])
+
+def load_eicu_bak(task='icu_mortality'):
+  '''TODO. We need to release this data. Gideon <gideon@inf.ethz.ch>'''
+  basepath = "data/eicu/train_test_split.npz"
   data = np.load(basepath)
 
   # N.B. we only deal with classification, no regression on length of icu stay.
