@@ -36,7 +36,6 @@ flags.DEFINE_integer('n_fw_iter', 100, '')
 flags.DEFINE_integer('LMO_iter', 1000, '')
 flags.DEFINE_string('exp', 'mixture', 'select from [mixture, s_and_s (aka spike and slab), many]')
 flags.DEFINE_string('fw_variant', 'fixed', '[fixed (default), line_search, fc] The Frank-Wolfe variant to use.')
-#flags.DEFINE_string('decay', 'log', '[linear, log (default), squared] The decay rate to use for Lambda.')
 
 ed.set_seed(FLAGS.seed)
 np.random.seed(FLAGS.seed)

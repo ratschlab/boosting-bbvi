@@ -33,7 +33,6 @@ flags.DEFINE_integer('n_iter', 10000, 'number of iterations for VI')
 ed.set_seed(FLAGS.seed)
 np.random.seed(FLAGS.seed)
 
-# TODO duplicated code.
 # what we are trying to fit
 if FLAGS.exp == 'mixture':
     pi = np.array([[0.4, 0.6]]).astype(np.float32)

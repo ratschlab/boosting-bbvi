@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# TODO set seed
 
 from edward.models import Categorical, Normal, Mixture, MultivariateNormalDiag
 import tensorflow as tf
